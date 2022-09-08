@@ -1,0 +1,27 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('.static', filename='styles.css') }}">
+{% endblock %}
+
+{% block title %}{% endblock %}
+
+<body>
+
+{% block content %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('home') }}"><b>Home</b></a></li>
+            {% if not current_user.is_authenticated: %}
+            <li><a href="{{ url_for('register') }}"><b>Register</b></a></li>
+            <li><a href="{{ url_for('login') }}"><b>Login</b></a></li>
+            {% endif %}
+            <li><a href="{{ url_for('logout') }}"><b>Logout</b></a></li>
+        </ul>
+    </div>
+</nav>
+
+{% endblock %}
+</body>
